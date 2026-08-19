@@ -11,7 +11,8 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh 'mvn -B -f lab10/Lab10-JenkinsIntro/starter/pom.xml clean package'
+            dir('starter') {
+                sh 'mvn -B clean package'
             }
         }
         stage('Test') {
