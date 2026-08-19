@@ -32,7 +32,7 @@ pipeline {
         }
         stage('Jacoco') {
             jacoco(
-            execPattern: 'starter/target/jacoco.exec',)
+            execPattern: 'starter/target/jacoco.exec',
                 classPattern: 'starter/target/classes',
                 sourcePattern: 'starter/src/main/java',
                 exclusionPattern: '**/test/**'
