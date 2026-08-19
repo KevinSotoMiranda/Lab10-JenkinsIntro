@@ -9,6 +9,12 @@ pipeline {
                 checkout scm
             }
         }
+        stage('Debug Workspace') {
+            steps {
+                sh 'pwd'
+                sh 'ls -la'
+            }
+        }
         stage('Build') {
             steps {
                 sh 'mvn -B clean package'
