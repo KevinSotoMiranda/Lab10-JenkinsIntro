@@ -18,11 +18,15 @@ pipeline {
         }
         stage('Test') {
             steps {
-                sh 'mvn -B test'
+                dir('starter') {
+                    sh 'mvn -B test'
+                }
             }
             post {
                 always {
-                    junit 'starter/target/surefire-reports/*.xml'
+                    dir('starter') {
+                        junit 'target/surefire-reports/*.xml'
+                    }
                 }
             }
         }
