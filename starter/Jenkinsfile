@@ -31,16 +31,19 @@ pipeline {
             }
         }
         stage('Jacoco') {
-            jacoco(
-            execPattern: 'starter/target/jacoco.exec',
-                classPattern: 'starter/target/classes',
-                sourcePattern: 'starter/src/main/java',
-                exclusionPattern: '**/test/**'
-            )
+            steps {
+                jacoco(
+                    execPattern: 'starter/target/jacoco.exec',
+                    classPattern: 'starter/target/classes',
+                    sourcePattern: 'starter/src/main/java',
+                    exclusionPattern: '**/test/**'
+                )
+            }
             post {
-            always {
-                dir('starter') {
-                    junit 'target/surefire-reports/*.xml'
+                always {
+                    dir('starter') {
+                        archiveArtifacts artifacts: 'target/site/jacoco/**', fingerprint: true
+                    }
                 }
             }
         }
